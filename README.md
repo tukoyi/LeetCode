@@ -1,5 +1,2 @@
 # LeetCode
-# test
-asfvewtbw
-
-cadsfvbget
+# leetcode practise
