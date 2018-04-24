@@ -18,8 +18,6 @@ func minCostClimbingStairs(cost []int) int {
         //顺序不能变，先要覆盖f1
         f0 = f1
         f1 = res
-    }
-    
-    
+    }  
     return res
 }

@@ -16,5 +16,4 @@ func climbStairs(n int) int {
         f1 = res
     }
     return res
-    
 }
