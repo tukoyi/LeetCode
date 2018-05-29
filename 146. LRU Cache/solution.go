@@ -1,6 +1,6 @@
 //总结：
 //Node保存真正的数据
-//LRUCache结构设计，快速定位Node的地址
+//LRUCache结构设计，通过hash table快速定位Node的地址
 //空节点head,tail的设计，保存在LRUCache struct中
 
 type Node struct {
