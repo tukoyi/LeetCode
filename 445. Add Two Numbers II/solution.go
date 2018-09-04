@@ -1,6 +1,6 @@
 package main
 
-//本题有两种思路，一种是list 翻转，一种是使用粘的特性，这里使用了第二种方方法，特地实现了栈
+//实现list的加法，本题有两种思路，一种是list 翻转，一种是使用粘的特性，这里使用了第二种方方法，特地实现了栈
 //栈的实现可以参考 https://github.com/xcltapestry/xclpkg/blob/master/algorithm/stack.go
 import (
 	"fmt"
