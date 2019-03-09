@@ -2,7 +2,7 @@
 //Memory Usage: 6.6 MB, less than 14.29% of Go online submissions for Search in a Binary Search Tree.
 
 // https://leetcode.com/problems/search-in-a-binary-search-tree/submissions/
-// 递归解决，bst的特点是left叶子节点的值小于等于root节点，右叶子节点的值小于等于root节点
+// 递归解决，bst的特点是left叶子节点的值小于root节点，右叶子节点的值大于等于root节点
 
 /**
  * Definition for a binary tree node.
