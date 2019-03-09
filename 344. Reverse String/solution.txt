@@ -1,0 +1,14 @@
+// Runtime: 636 ms, faster than 75.38% of Go online submissions for Reverse String.
+// Memory Usage: 8.7 MB, less than 51.69% of Go online submissions for Reverse String.
+
+// https://leetcode.com/problems/reverse-string/submissions/
+
+func reverseString(s []byte)  {
+    var startIndex, endIndex = 0, len(s) - 1
+    
+    for startIndex < endIndex {
+        s[startIndex], s[endIndex] = s[endIndex], s[startIndex]
+        startIndex ++
+        endIndex --
+    }
+}
