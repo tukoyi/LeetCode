@@ -1,0 +1,25 @@
+//Runtime: 152 ms, faster than 100.00% of Go online submissions for DI String Match.
+//Memory Usage: 8.1 MB, less than 31.82% of Go online submissions for DI String Match.
+// 增加则当前位置放一个min值，减少则当前位置放一个max值
+
+
+func diStringMatch(S string) []int {
+    var ret []int
+    var min, max = 0, len(S)
+    
+    anscI := []byte("I")[0]
+    // anscD := []byte("D")[0]
+    
+    for index := 0; index < len(S); index ++ {
+        if S[index] == anscI {
+               ret = append(ret, min)  
+               min ++ 
+        } else {
+                ret = append(ret, max)
+                max --                
+        }
+
+    }    
+    ret = append(ret, max)
+    return ret
+}
