@@ -1,0 +1,26 @@
+Runtime: 0 ms, faster than 100.00% of Go online submissions for Uncommon Words from Two Sentences.
+Memory Usage: 2.3 MB, less than 100.00% of Go online submissions for Uncommon Words from Two Sentences.
+https://leetcode.com/problems/uncommon-words-from-two-sentences/submissions/
+出现两次则为重复，不管在是同一数组内还是不同数组内
+
+
+func uncommonFromSentences(A string, B string) []string {
+    S := A + " " + B
+    listS := strings.Split(S, " ")
+    
+    stringCntMap := make(map[string]int)
+    
+    var ret []string
+    for _, val := range listS{
+        stringCntMap[val] = stringCntMap[val] + 1
+    }
+    
+    for k, v := range stringCntMap {
+        if v == 1 {
+            ret = append(ret, k)
+        }
+    }
+    
+    return ret
+    
+}

@@ -1,0 +1,32 @@
+Runtime: 12 ms, faster than 100.00% of Go online submissions for Subdomain Visit Count.
+Memory Usage: 6.5 MB, less than 60.00% of Go online submissions for Subdomain Visit Count.
+https://leetcode.com/problems/subdomain-visit-count/submissions/
+
+
+
+import ("strconv")
+
+func subdomainVisits(cpdomains []string) []string {
+    domainCntMap := make(map[string]int)
+    
+    for _, domain := range cpdomains {
+        domainAddr := strings.Split(domain, " ")
+        cnt, _ := strconv.Atoi(domainAddr[0])
+        
+        subdomains := strings.Split(domainAddr[1], ".")
+        for index := 0; index <= len(subdomains) - 1; index ++ {
+                d := strings.Join(subdomains[index:], ".")
+                domainCntMap[d] = domainCntMap[d] + cnt
+        }
+        
+    }
+    
+    var ret []string
+    for domain, cnt := range domainCntMap {
+        cntStr := strconv.Itoa(cnt)
+        cpdomain := cntStr + " " + domain
+        ret = append(ret, cpdomain)
+    }
+    return ret
+    
+}
