@@ -1,0 +1,26 @@
+//Runtime: 28 ms, faster than 90.82% of Go online submissions for Transpose Matrix.
+//Memory Usage: 7.4 MB, less than 66.67% of Go online submissions for Transpose Matrix.
+//https://leetcode.com/problems/transpose-matrix/submissions/
+//
+// 纯数学问题，理解矩阵转置的特点
+
+func transpose(A [][]int) [][]int {
+    if len(A) == 0 {
+        return A
+    }
+    
+    var ret [][]int
+    retElementNumber := len(A[0]) 
+    retElementLength := len(A)
+    
+    for i := 0; i < retElementNumber; i ++ {
+        element := make([]int, retElementLength)
+        for j := 0;  j < retElementLength; j ++ {
+            element[j] = A[j][i]
+        }
+        ret = append(ret, element)
+    }
+    
+    return ret
+    
+}
