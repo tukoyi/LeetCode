@@ -1,0 +1,33 @@
+Runtime: 0 ms, faster than 100.00% of Go online submissions for Self Dividing Numbers.
+Memory Usage: 2.6 MB, less than 100.00% of Go online submissions for Self Dividing Numbers.
+https://leetcode.com/problems/self-dividing-numbers/submissions/
+
+
+func selfDividingNumbers(left int, right int) []int {
+ 
+    var ret []int
+    
+    for val := left; val <= right; val ++ {        
+        if checkNumber(val) {
+            ret = append(ret, val) 
+        }       
+    }
+    return ret    
+}
+
+func checkNumber(val int) bool {
+        valCopy := val
+        if valCopy == 0 {
+            return false
+        }
+        
+        for valCopy > 0 {
+            valDigit := valCopy % 10
+            valCopy = valCopy / 10
+            
+            if valDigit == 0  || val % valDigit != 0 {
+                return false
+            }            
+        } 
+        return true
+}
