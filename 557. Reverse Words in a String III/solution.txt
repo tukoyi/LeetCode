@@ -1,0 +1,65 @@
+Runtime: 20 ms, faster than 32.74% of Go online submissions for Reverse Words in a String III.
+Memory Usage: 7.6 MB, less than 16.67% of Go online submissions for Reverse Words in a String III.
+https://leetcode.com/problems/reverse-words-in-a-string-iii/submissions/
+
+func reverseWords(s string) string {
+    
+    sList := strings.Split(s, " ")
+    for index := 0; index < len(sList); index ++ {
+        sList[index] = swapStr(sList[index])
+    }
+    
+    var ret string
+    for _, val := range sList {
+        ret = ret + " " + string(val)
+    }
+    return ret[1:]
+}
+
+
+func swapStr(str string) string {
+    var ret = []rune(str)
+    var start, end = 0, len(ret) - 1
+    
+    for start < end {
+        ret[start], ret[end] = ret[end], ret[start]
+        start ++
+        end --
+    }
+    
+    return string(ret)
+}
+
+
+Runtime: 8 ms, faster than 93.81% of Go online submissions for Reverse Words in a String III.
+Memory Usage: 6.1 MB, less than 16.67% of Go online submissions for Reverse Words in a String III.
+string.Join 比+ 拼接字符串效率高了不知道到哪里去
+
+
+func reverseWords(s string) string {
+    
+    sList := strings.Split(s, " ")
+    for index := 0; index < len(sList); index ++ {
+        sList[index] = swapStr(sList[index])
+    }
+    
+    var ret string
+    for _, val := range sList {
+        ret = ret + " " + string(val)
+    }
+    return ret[1:]
+}
+
+
+func swapStr(str string) string {
+    var ret = []rune(str)
+    var start, end = 0, len(ret) - 1
+    
+    for start < end {
+        ret[start], ret[end] = ret[end], ret[start]
+        start ++
+        end --
+    }
+    
+    return string(ret)
+}

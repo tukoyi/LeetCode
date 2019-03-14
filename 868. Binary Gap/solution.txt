@@ -1,0 +1,44 @@
+Runtime: 4 ms, faster than 100.00% of Go online submissions for Binary Gap.
+Memory Usage: 2 MB, less than 100.00% of Go online submissions for Binary Gap.
+https://leetcode.com/problems/binary-gap/submissions/
+
+先找到N的二进制有多少位（^mask），然后让1依次左移，按位与，一次获取一个1，进行计数
+
+
+func binaryGap(N int) int {
+	var max, temp_max int
+	var mask = ^0
+	var start1 = true
+
+	for N & mask != 0 {
+		mask = mask << 1
+	}
+	mask = ^mask
+
+	for i := 1; i < mask; i = i << 1 {
+		if i == 1 {
+			if i & N == 1 {
+				start1 = true
+			} else {
+				start1 = false
+			}
+			fmt.Printf("N:%b, i:%b, start1:%v, max:%d\n", N, i, start1, max)
+		} else {
+			if start1 {
+				temp_max ++
+				if i & N == i {
+					if temp_max > max {
+						max = temp_max
+					}
+					temp_max = 0
+				}
+			} else {
+				if i & N == i {
+					start1 = true
+				}
+			}
+			fmt.Printf("N:%b, i:%b, start1:%v, max:%d\n", N, i, start1, max)
+		}
+	}
+	return max
+}
