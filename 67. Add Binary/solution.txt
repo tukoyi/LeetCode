@@ -1,0 +1,99 @@
+
+https://leetcode.com/problems/add-binary/
+
+
+Runtime: 12 ms, faster than 7.79% of Go online submissions for Add Binary.
+Memory Usage: 3.1 MB, less than 8.33% of Go online submissions for Add Binary.
+
+func addBinary(a string, b string) string {
+	var flag = "0"
+
+	var maxAIndex = len(a) - 1
+	var maxBIndex = len(b) - 1
+	var aElement, bElement string
+	var ret string
+
+	for  aIndex,bIndex := maxAIndex,maxBIndex; aIndex >= 0 || bIndex >= 0;  aIndex,bIndex = aIndex - 1, bIndex - 1 {
+		if aIndex >= 0 {
+			aElement = string(a[aIndex])
+		} else {
+			aElement = "0"
+		}
+
+		if bIndex >= 0 {
+			bElement = string(b[bIndex])
+		} else {
+			bElement = "0"
+		}
+		f, e := add(aElement, bElement, flag)
+		fmt.Printf("aElement:%s, bElement:%s, flag:%s, ret:%s\n",aElement, bElement, f, e )
+		flag = f
+		ret = e + ret
+	}
+
+	if flag == "1" {
+		ret = flag + ret
+	}
+	return ret
+
+}
+
+
+func add(a string, b string, flagIn string) ( flagOut, ret string) {
+
+	if a == "1" && b == "1" {
+		if flagIn == "1" {
+			return "1", "1"
+		}
+		return "1", "0"
+
+	}
+
+	if a == "1" || b == "1" {
+		if flagIn == "1" {
+			return "1", "0"
+		}
+		return "0", "1"
+	}
+
+	if flagIn == "1" {
+		return "0", "1"
+	}
+	return "0", "0"
+}
+
+
+优化：
+Runtime: 0 ms, faster than 100.00% of Go online submissions for Add Binary.
+Memory Usage: 2.6 MB, less than 41.67% of Go online submissions for Add Binary.
+
+func addBinary(a string, b string) string {
+	var carry int
+	var maxAIndex = len(a) - 1
+	var maxBIndex = len(b) - 1
+	var aElement, bElement int
+	var ret string
+
+	for  aIndex,bIndex := maxAIndex,maxBIndex; aIndex >= 0 || bIndex >= 0;  aIndex,bIndex = aIndex - 1, bIndex - 1 {
+		if aIndex >= 0 && string(a[aIndex]) == "1"{
+			aElement = 1
+		} else {
+			aElement = 0
+		}
+
+		if bIndex >= 0 && string(b[bIndex]) == "1"{
+			bElement = 1
+		} else {
+			bElement = 0
+		}
+
+		e := (aElement + bElement + carry) & 1
+		ret = fmt.Sprintf("%d", e) + ret
+		carry = (aElement + bElement + carry) >> 1
+	}
+
+	if carry == 1 {
+		ret = "1" + ret
+	}
+	return ret
+}

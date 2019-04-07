@@ -1,0 +1,79 @@
+https://leetcode.com/problems/assign-cookies/
+
+Runtime: 772 ms, faster than 10.42% of Go online submissions for Assign Cookies.
+Memory Usage: 6 MB, less than 100.00% of Go online submissions for Assign Cookies.
+
+
+func findContentChildren(g []int, s []int) int {
+    sort(g)
+    sort(s)
+    var ret = 0
+    var i, j = 0, 0
+    for  i < len(g) && j < len(s){
+        if g[i] <= s[j] {
+            ret ++
+            i ++
+            j ++
+        } else {
+            j ++
+        }
+    }
+    
+    return ret
+}
+
+func sort(list []int) {
+    for i := len(list) - 1; i >= 0 ; i -- {
+        for j := 0; j < i; j ++ {
+            if list[j] > list[j + 1] {
+               list[j], list[j + 1] = list[j + 1], list[j]
+            } 
+        }
+    }
+}
+
+运行速度不够快，将bubble 排序切换为快速排序
+Runtime: 24 ms, faster than 100.00% of Go online submissions for Assign Cookies.
+Memory Usage: 6 MB, less than 100.00% of Go online submissions for Assign Cookies.
+
+func findContentChildren(g []int, s []int) int {
+	quickSort(g)
+	quickSort(s)
+	var ret = 0
+	var i, j = 0, 0
+	for  i < len(g) && j < len(s){
+		if g[i] <= s[j] {
+			ret ++
+			i ++
+			j ++
+		} else {
+			j ++
+		}
+	}
+	return ret
+}
+
+
+func quickSort(list []int) []int{
+	if len(list ) <= 1 {
+		return list
+	}
+	var head = 0
+	var tail = len(list) - 1
+	mid := list[0]
+
+	for head < tail {
+		for head < tail && list[tail] >= mid {
+			tail --
+		}
+		list[tail], list[head] = list[head], list[tail]
+
+		for head < tail && list[head] <= mid {
+			head ++
+		}
+		list[tail], list[head] = list[head], list[tail]
+	}
+	quickSort(list[:head])
+	quickSort(list[head + 1:])
+	return list
+}
